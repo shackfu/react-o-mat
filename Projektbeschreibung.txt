@@ -1,0 +1,34 @@
+Gemini hat gesagt
+Damit wir in einer neuen Sitzung oder nach einem Reset sofort wieder auf diesem stabilen Stand aufsetzen können, habe ich dir einen "System-Snapshot-Prompt" erstellt. Dieser enthält alle technischen Parameter, Pin-Belegungen, die MAC-Adressen-Logik und die stabilisierte Funk-Strategie.
+
+Kopiere dir diesen Text einfach in eine Notizdatei.
+
+Der Snapshot-Prompt
+Rolle: Handle als ESP32-Experte für ESP-NOW Kommunikation.
+
+Hardware-Setup:
+
+Master: ESP32-C3 SuperMini, 12er NeoPixel Ring (Pin 10), SSD1306 OLED (I2C: SDA 8, SCL 9), Analog-Joystick (X: GPIO 0, Y: GPIO 1, Button: GPIO 2).
+
+Slave: ESP32-C3 SuperMini, 12er NeoPixel Ring (Pin 10), VL6180X Sensor (I2C: 8/9).
+
+Technische Fixpunkte:
+
+MAC-Adressen: Der Master hat die Basis-MAC AC:A7:04:AF:82:A4. Der Slave sendet direkt an diese Adresse (Unicast). Kein AP-Mode am Master (nur STA-Mode für maximale Stabilität).
+
+Funk-Strategie: ESP-NOW auf WiFi-Kanal 0/1. Slave sendet Heartbeat alle 500ms. Master nutzt ein lastSeen-Array mit einem Timeout von 10.000ms, um inaktive Slaves zu entfernen.
+
+I2C-Stabilität: OLED-Updates sind auf 150-200ms getaktet, um CPU-Interrupts für ESP-NOW nicht zu blockieren.
+
+Menü-Struktur: Master hat ein Joystick-gesteuertes OLED-Menü (Ready-Modus vs. Game-Modus).
+
+Visuelles Feedback: >     * Master Standby: Rotes Atmen (0 Slaves) oder grünes Status-Blinken entsprechend der Anzahl verbundener Slaves.
+
+Slave Standby: Rotes Atmen bei Verbindungsverlust (>2s), grünes Atmen bei aktivem Sync vom Master.
+
+Ziel: Stelle den lauffähigen C++ Code (Arduino IDE) für Master und Slave wieder her, der diese Parameter nutzt und die Spielmodi "Speed Run" und "Whack-A-Mole" vorbereitet.
+
+Was du jetzt tun kannst
+Du kannst mir diesen Prompt jederzeit in einem neuen Chat schicken, und ich generiere dir sofort die passenden Codes ohne die ganze Fehlersuche von vorn.
+
+Möchtest du, dass ich als nächsten Schritt die Logik für das "Whack-A-Mole" Spiel (Zufallsleuchten eines Slaves) jetzt schon finalisiere?
