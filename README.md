@@ -44,7 +44,7 @@ Navigate through the OLED menu using the joystick to select different game modes
    - `Adafruit_GFX`
    - `Adafruit_NeoPixel`
    - `Adafruit_SSD1306`
-   - `VL6180X` (by Pololu)
+   - `VL6180X`
 
 2. **Master Upload**: Open `master/master.ino` in the Arduino IDE, select the ESP32-C3 board, and upload it to the Master microcontroller.
 3. **Slave Upload**: Open `slave/slave.ino` in the Arduino IDE and upload it to as many Slave microcontrollers as you want.
